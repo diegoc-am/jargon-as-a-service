@@ -27,3 +27,5 @@ gem 'json', '~> 2.12'
 gem 'rack-attack', '~> 6.7'
 
 gem 'activesupport', '~> 8.0'
+
+gem "rack-contrib", "~> 2.5"

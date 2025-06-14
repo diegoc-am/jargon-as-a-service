@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Be nice to your co-workers</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      padding: 0;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      height: 100vh;
+      background-color: #f4f4f4;
+    }
+
+    #buttonContainer {
+      display: flex;
+      gap: 10px; /* Adds spacing between buttons */
+      margin-top: 20px;
+    }
+
+    #outputContainer {
+      position: relative;
+      margin-top: 20px;
+      width: 90%;
+      max-width: 800px;
+    }
+
+    #output {
+      padding: 10px;
+      border: 1px solid #ccc;
+      background-color: #fff;
+      text-align: center;
+      word-wrap: break-word;
+    }
+
+    #copyButton {  
+      background-color: #ffffff;
+      color: white;
+      border: none;
+      border-radius: 5px;
+      padding: 5px 10px;
+      cursor: pointer;
+      font-size: 14px;
+    }
+
+    #copyButton:hover {
+      background-color: #bdbdbd;
+    }
+
+    button {
+      padding: 10px 20px;
+      font-size: 16px;
+      cursor: pointer;
+      border: none;
+      background-color: #007BFF;
+      color: white;
+      border-radius: 5px;
+    }
+
+    button:hover {
+      background-color: #0056b3;
+    }
+  </style>
+</head>
+<body>
+  <h2 id="category">Just click a button</h1>
+  <div id="outputContainer">
+    <h1 id="output" hidden="true">Click the button to fetch jargon.</h1>
+  </div>
+  <div id="buttonContainer">
+    <button id="fetchNo" class="fetch" style="background-color: #af0d30;">Say no</button>
+    <button id="fetchYes" class="fetch" style="background-color: #00aa69;">Say yes</button>
+    <button id="fetchExecutiveCoercion" class="fetch" style="background-color: #b4d455;">Sound like a high level executive</button>
+    <button id="copyButton"><h3>📋</h3></button>
+  </div>
+
+  <script>
+    for (const button of document.getElementsByClassName('fetch')) {
+      button.addEventListener('click', async (event) => {
+        const outputDiv = document.getElementById('output');
+        const categoryDiv = document.getElementById('category');
+        const copyButton = document.getElementById('copyButton');
+        categoryDiv.textContent = 'Loading...';
+        outputDiv.textContent = 'Loading...';
+
+        try {
+          const urls = {
+            fetchNo: '/api/phrases/no',
+            fetchYes: '/api/phrases/yes',
+            fetchExecutiveCoercion: '/api/phrases/executive_coercion',
+          };
+
+          const friendlyCategoryNames = {
+            no: 'Here is how to say No',
+            yes: 'Here is how to say Yes',
+            executive_coercion: 'Here is how to sound like a high level executive',
+          };
+
+          const response = await fetch(urls[event.target.id]);
+          if (!response.ok) {
+            throw new Error('Network response was not ok');
+          }
+          const data = await response.json();
+          categoryDiv.hidden = false;
+          outputDiv.hidden = false;
+          copyButton.hidden = false;
+          categoryDiv.textContent = friendlyCategoryNames[data.category] || 'No category provided.';
+          outputDiv.textContent = data.phrase || 'No jargon received.';
+        } catch (error) {
+          outputDiv.textContent = 'Error fetching jargon: ' + error.message;
+        }
+      });
+    }
+
+    document.getElementById('copyButton').addEventListener('click', () => {
+      const outputDiv = document.getElementById('output');
+      navigator.clipboard.writeText(outputDiv.textContent);
+    });
+  </script>
+</body>
+</html>

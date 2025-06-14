@@ -14,6 +14,17 @@ GET /api/categories
 GET /api/phrases/:category
 ```
 
+### Self host
+
+```yaml
+services:
+  jargon-aas:
+    container_name: jargon-aas
+    build: https://github.com/diegoc-am/jargon-as-a-service.git
+    ports:
+        - "9292:9292"
+```
+
 ### Examples
 
 - [executive_coercion](https://jaas.diegoc.io/api/phrases/executive_coercion)

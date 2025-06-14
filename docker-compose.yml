@@ -1,0 +1,7 @@
+services:
+  jargon-aas:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    ports:
+      - "9292:9292"
