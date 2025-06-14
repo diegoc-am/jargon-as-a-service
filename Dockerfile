@@ -15,6 +15,8 @@ RUN cd /app && \
 
 RUN apk del build-dependencies
 
+RUN apk --no-cache add curl
+
 ADD config.ru /app
 ADD src/ /app/src
 RUN chown -R nobody:nobody /app
@@ -22,6 +24,6 @@ USER nobody
 EXPOSE 9292
 WORKDIR /app
 
-HEALTHCHECK --interval=30s --timeout=30s --start-period=5s --retries=3 CMD [ "curl", "-f", "http://localhost:9292/api/status" ]
+HEALTHCHECK --interval=30s --timeout=5s --start-period=5s --retries=5 CMD [ "curl", "-f", "http://127.0.0.1:9292/api/status" ]
 
 ENTRYPOINT ["bundle", "exec", "puma"]
