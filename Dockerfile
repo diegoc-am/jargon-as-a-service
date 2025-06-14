@@ -4,10 +4,14 @@ ADD Gemfile /app/
 ADD Gemfile.lock /app/
 
 RUN apk --update add --virtual build-dependencies ruby-dev build-base && \
-    gem install bundler && \
-    cd /app
+    gem install bundler
     
-RUN bundle install --without development test 
+RUN cd /app && \
+    bundle config set --local path 'vendor/bundle' && \
+    bundle config set --local frozen 'true' && \
+    bundle config set --local deployment 'true' && \
+    bundle config set --local without 'development test' && \
+    bundle install
 
 RUN apk del build-dependencies
 
@@ -17,5 +21,7 @@ RUN chown -R nobody:nobody /app
 USER nobody
 EXPOSE 9292
 WORKDIR /app
+
+HEALTHCHECK --interval=30s --timeout=30s --start-period=5s --retries=3 CMD [ "curl", "-f", "http://localhost:9292/api/status" ]
 
 ENTRYPOINT ["bundle", "exec", "puma"]

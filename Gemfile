@@ -23,3 +23,7 @@ gem "rubocop-minitest", "~> 0.38.1", groups: [:development, :test]
 gem "rubocop-rake", "~> 0.7.1", groups: [:development, :test]
 
 gem "json", "~> 2.12"
+
+gem "rack-attack", "~> 6.7"
+
+gem "activesupport", "~> 8.0"
