@@ -1,0 +1,23 @@
+# frozen_string_literal: true
+
+source 'https://rubygems.org'
+
+# gem "rails"
+
+gem 'grape', '~> 2.3'
+
+gem 'puma', '~> 6.6'
+
+gem 'rake', '~> 13.3'
+
+gem 'rubocop', '~> 1.76', group: :development
+
+gem 'rerun', '~> 0.14.0', group: :development
+
+gem 'minitest', '~> 5.25', groups: %i[development test]
+gem 'minitest-reporters', '~> 1.7', groups: %i[development test]
+gem 'rack-test', '~> 2.2', groups: %i[development test]
+gem 'simplecov', '~> 0.22.0', groups: %i[development test]
+
+gem "rubocop-minitest", "~> 0.38.1", groups: [:development, :test]
+gem "rubocop-rake", "~> 0.7.1", groups: [:development, :test]
