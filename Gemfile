@@ -21,3 +21,5 @@ gem 'simplecov', '~> 0.22.0', groups: %i[development test]
 
 gem "rubocop-minitest", "~> 0.38.1", groups: [:development, :test]
 gem "rubocop-rake", "~> 0.7.1", groups: [:development, :test]
+
+gem "json", "~> 2.12"
