@@ -19,11 +19,11 @@ gem 'minitest-reporters', '~> 1.7', groups: %i[development test]
 gem 'rack-test', '~> 2.2', groups: %i[development test]
 gem 'simplecov', '~> 0.22.0', groups: %i[development test]
 
-gem "rubocop-minitest", "~> 0.38.1", groups: [:development, :test]
-gem "rubocop-rake", "~> 0.7.1", groups: [:development, :test]
+gem 'rubocop-minitest', '~> 0.38.1', groups: %i[development test]
+gem 'rubocop-rake', '~> 0.7.1', groups: %i[development test]
 
-gem "json", "~> 2.12"
+gem 'json', '~> 2.12'
 
-gem "rack-attack", "~> 6.7"
+gem 'rack-attack', '~> 6.7'
 
-gem "activesupport", "~> 8.0"
+gem 'activesupport', '~> 8.0'

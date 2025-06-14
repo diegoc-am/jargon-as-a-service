@@ -22,7 +22,7 @@ module Jargon
         error!({ error: 'Category not found' }, 404)
       end
     end
-    
+
     get '/categories' do
       {
         categories: Phrases.categories.keys
