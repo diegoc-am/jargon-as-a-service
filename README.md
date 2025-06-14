@@ -4,6 +4,8 @@ Available at [https://jaas.diegoc.io](https://jaas.diegoc.io/) (limited to 60 rp
 
 Jargon that you might've heard in the workplace, or might want to use (at your own risk).
 
+![ui](docs/screenshot.png)
+
 ## Usage
 
 ```
@@ -34,6 +36,13 @@ services:
 - [executive_coercion](https://jaas.diegoc.io/api/phrases/executive_coercion)
 - [yes](https://jaas.diegoc.io/api/phrases/yes)
 - [no](https://jaas.diegoc.io/api/phrases/no)
+
+## Contributing
+
+1. Fork
+2. Add a category/phrases
+3. Submit a PR
+4. Talk to your co-workers
 
 ## Credits
 
