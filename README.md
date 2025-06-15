@@ -22,6 +22,7 @@ GET /api/jargon
 
 ### Self host
 
+docker-compose.yml
 ```yaml
 services:
   jargon-aas:

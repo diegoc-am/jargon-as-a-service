@@ -3,9 +3,9 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta property="og-title" content="Great communication tools for your co-workers">
-  <meta property="og-description" contentiption="I promised myself I'd stick to being unhelpful this week.">
-  <meta property="og-image" content="https://github.com/diegoc-am/jargon-as-a-service/blob/main/src/public/michael_scott.jpg?raw=true">
+  <meta property="og:title" content="Great communication tools for your co:workers">
+  <meta property="og:description" contentiption="I promised myself I'd stick to being unhelpful this week.">
+  <meta property="og:image:secure_url" content="https://github.com/diegoc-am/jargon-as-a-service/blob/main/src/public/michael_scott.jpg?raw=true">
   <title>Be nice to your co-workers</title>
   <style>
     body {
@@ -68,10 +68,34 @@
     button:hover {
       background-color: #0056b3;
     }
+
+    #githubLogo {
+      position: fixed;
+      bottom: 20px;
+      right: 20px;
+      width: 60px;
+      height: 60px;
+      background-color: #ffffff;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.3);
+      cursor: pointer;
+    }
+
+    #githubLogo img {
+      width: 40px;
+      height: 40px;
+    }
+
+    #githubLogo:hover {
+      background-color: #ffffff;
+    }
   </style>
 </head>
 <body>
-  <h2 id="category">Just click a button</h1>
+  <h2 id="category">Just click a button</h2>
   <div id="outputContainer">
     <h1 id="output" hidden="true">Click the button to fetch jargon.</h1>
   </div>
@@ -80,6 +104,11 @@
     <button id="fetchYes" class="fetch" style="background-color: #00aa69;">Say yes</button>
     <button id="fetchExecutiveCoercion" class="fetch" style="background-color: #b4d455;">Sound like a high level executive</button>
     <button id="copyButton"><h3>📋</h3></button>
+  </div>
+
+  <!-- Floating GitHub logo -->
+  <div id="githubLogo" onclick="window.open('https://github.com/diegoc-am/jargon-as-a-service', '_blank')">
+    <img src="https://github.githubassets.com/images/modules/logos_page/GitHub-Mark.png" alt="GitHub Logo">
   </div>
 
   <script>
@@ -99,8 +128,8 @@
           };
 
           const friendlyCategoryNames = {
-            no: 'Here is how to say No',
-            yes: 'Here is how to say Yes',
+            no: 'Here is how to say no',
+            yes: 'Here is how to say yes',
             executive_coercion: 'Here is how to sound like a high level executive',
           };
 
