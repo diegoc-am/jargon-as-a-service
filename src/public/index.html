@@ -103,6 +103,7 @@
     <button id="fetchNo" class="fetch" style="background-color: #af0d30;">Say no</button>
     <button id="fetchYes" class="fetch" style="background-color: #00aa69;">Say yes</button>
     <button id="fetchExecutiveCoercion" class="fetch" style="background-color: #b4d455;">Sound like a high level executive</button>
+    <button id="fetchAnnoyingManager" class="fetch" style="background-color: #405012;">Sound like a (micro) manager</button>
     <button id="copyButton"><h3>📋</h3></button>
   </div>
 
@@ -125,12 +126,14 @@
             fetchNo: '/api/phrases/no',
             fetchYes: '/api/phrases/yes',
             fetchExecutiveCoercion: '/api/phrases/executive_coercion',
+            fetchAnnoyingManager: '/api/phrases/annoying_manager',
           };
 
           const friendlyCategoryNames = {
             no: 'Here is how to say no',
             yes: 'Here is how to say yes',
             executive_coercion: 'Here is how to sound like a high level executive',
+            annoying_manager: 'Here is how to sound like a (micro) manager',
           };
 
           const response = await fetch(urls[event.target.id]);
