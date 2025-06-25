@@ -181,8 +181,9 @@
     }
 
     document.getElementById('copyButton').addEventListener('click', () => {
+      const prms = new URLSearchParams(window.location.search);
       const outputDiv = document.getElementById('output');
-      navigator.clipboard.writeText(outputDiv.textContent);
+      navigator.clipboard.writeText(`"${outputDiv.textContent}" \n from https://jaas.diegoc.io?category=${prms.get('category')}&id=${prms.get('id')}`);
     });
   </script>
 </body>
