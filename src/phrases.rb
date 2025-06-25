@@ -13,8 +13,6 @@ module Jargon
         load_categories!
       end
 
-      private
-
       def load_categories!
         @categories = {}
         Dir.glob('src/assets/jargon/*.json').tap { |x| puts "Found #{x.join(',')}" }.each do |file_path|
@@ -26,14 +24,14 @@ module Jargon
       end
 
       def load_phrases(file_path)
-        return {} unless File.exist?(file_path)
+        return [] unless File.exist?(file_path)
 
         begin
           file_content = File.read(file_path)
           JSON.parse(file_content, symbolize_names: true)
         rescue JSON::ParserError => e
           puts "Error parsing JSON from #{file_path}: #{e.message}"
-          {}
+          []
         end
       end
     end

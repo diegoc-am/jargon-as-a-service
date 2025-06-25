@@ -15,10 +15,13 @@ module Jargon
 
     get '/phrases/:category' do
       category = params[:category]
+      phrases = Phrases.categories[category]
+      id = rand(1..phrases.size)
       if Phrases.categories.key?(category)
-        { 
+        {
+          id: id,
           category: category,
-          phrase: Phrases.categories[category].sample 
+          phrase: Phrases.categories[category][id - 1]
         }
       else
         error!({ error: 'Category not found' }, 404)
@@ -33,9 +36,12 @@ module Jargon
 
     get '/jargon' do
       category = Phrases.categories.keys.sample
+      phrases = Phrases.categories[category]
+      id = rand(1..phrases.size)
       { 
+        id: id,
         category: category,
-        phrase: Phrases.categories[category].sample 
+        phrase: Phrases.categories[category][id - 1]
       }
     end
   end
