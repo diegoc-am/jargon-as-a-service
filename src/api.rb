@@ -28,6 +28,21 @@ module Jargon
       end
     end
 
+    get '/phrases/:category/:id' do
+      category = params[:category]
+      id = params[:id].to_i
+
+      if Phrases.categories.key?(category)
+        {
+          id: id,
+          category: category,
+          phrase: Phrases.categories[category][id - 1]
+        }
+      else
+        error!({ error: 'Category not found' }, 404)
+      end
+    end
+
     get '/categories' do
       {
         categories: Phrases.categories.keys
