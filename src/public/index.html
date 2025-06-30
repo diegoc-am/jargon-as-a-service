@@ -102,6 +102,7 @@
     <h1 id="output" hidden="true">Click the button to fetch jargon.</h1>
   </div>
   <div id="buttonContainer">
+    <button id="fetchSassyMorning" class="fetch" style="background-color: #90e29b;">Say good morning</button>
     <button id="fetchNo" class="fetch" style="background-color: #af0d30;">Say no</button>
     <button id="fetchYes" class="fetch" style="background-color: #00aa69;">Say yes</button>
     <button id="fetchExecutiveCoercion" class="fetch" style="background-color: #b4d455;">Sound like a high level executive</button>
@@ -120,6 +121,7 @@
       fetchYes: '/api/phrases/yes',
       fetchExecutiveCoercion: '/api/phrases/executive_coercion',
       fetchAnnoyingManager: '/api/phrases/annoying_manager',
+      fetchSassyMorning: '/api/phrases/sassy_morning',
     };
 
     const friendlyCategoryNames = {
@@ -127,6 +129,7 @@
       yes: 'Here is how to say yes',
       executive_coercion: 'Here is how to sound like a high level executive',
       annoying_manager: 'Here is how to sound like a (micro) manager',
+      sassy_morning: 'Start your day with sass',
     };
 
     const fetchPhrase = async (url) => {
@@ -185,7 +188,7 @@
     document.getElementById('copyButton').addEventListener('click', () => {
       const prms = new URLSearchParams(window.location.search);
       const outputDiv = document.getElementById('output');
-      navigator.clipboard.writeText(`"${outputDiv.textContent}" \n from https://jaas.diegoc.io?category=${prms.get('category')}&id=${prms.get('id')}`);
+      navigator.clipboard.writeText(`>"${outputDiv.textContent}"\nfrom https://jaas.diegoc.io?category=${prms.get('category')}&id=${prms.get('id')}`);
     });
   </script>
 </body>
