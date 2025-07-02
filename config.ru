@@ -21,4 +21,4 @@ Rack::Attack.throttle('req/ip', limit: 60, period: 60, &:ip)
 
 Jargon::Phrases.load_categories! # Ensure categories are loaded before API is run
 
-run Rack::Cascade.new [Jargon::API, Jargon::Web]
+run Rack::Cascade.new [Jargon::Web, Jargon::API]

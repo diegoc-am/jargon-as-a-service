@@ -17,12 +17,12 @@ module Jargon
 
     not_found do
         status 404
-        erb :not_found
+        'not found'
     end
 
     error do
         status 500
-        erb :error
+        'internal server error'
     end
   end
 end
