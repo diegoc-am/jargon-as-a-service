@@ -16,8 +16,8 @@ task :add_phrases, [:category, :file_path] do |_t, args|
   file_path = args[:file_path]
 
   if category.nil? || file_path.nil?
-    puts "Usage: rake add_phrases[category,file_path]"
-    puts "Example: rake add_phrases[general,phrases.json]"
+    puts 'Usage: rake add_phrases[category,file_path]'
+    puts 'Example: rake add_phrases[general,phrases.json]'
     exit 1
   end
 
@@ -42,7 +42,6 @@ task :add_phrases, [:category, :file_path] do |_t, args|
     JSON.dump(phrs, File.open("src/assets/jargon/#{cat}.json", 'w'))
     puts "Saved #{phrs.size} phrases to src/assets/jargon/#{cat}.json"
   end
-
 end
 
 task default: :test

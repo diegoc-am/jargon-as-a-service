@@ -64,7 +64,7 @@ module Jargon
       category = Phrases.categories.keys.sample
       phrases = Phrases.categories[category]
       id = rand(1..phrases.size)
-      { 
+      {
         id: id,
         category: category,
         phrase: Phrases.categories[category][id - 1]
