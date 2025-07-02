@@ -51,4 +51,4 @@ services:
 
 - Years of software development
 
-![michael-scott.jpg](src/public/michael_scott.jpg)
+![michael-scott.jpg](docs/michael_scott.jpg)
