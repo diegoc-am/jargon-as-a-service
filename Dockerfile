@@ -23,7 +23,6 @@ RUN chown -R nobody:nobody /app
 USER nobody
 EXPOSE 9292
 WORKDIR /app
-ENV RACK_ENV production
 
 HEALTHCHECK --interval=30s --timeout=5s --start-period=5s --retries=5 CMD [ "curl", "-f", "http://127.0.0.1:9292/api/status" ]
 

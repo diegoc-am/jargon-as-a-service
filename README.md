@@ -29,7 +29,9 @@ services:
     container_name: jargon-aas
     build: https://github.com/diegoc-am/jargon-as-a-service.git
     ports:
-        - "9292:9292"
+      - "9292:9292"
+    environment:
+      - RACK_ENV=production
 ```
 
 ### Examples
