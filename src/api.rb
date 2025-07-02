@@ -15,6 +15,17 @@ module Jargon
 
     get '/phrases/:category' do
       category = params[:category]
+      if Phrases.categories.key?(category)
+        Phrases.categories[category].each_with_index.map do |phrase, index|
+          { id: index + 1, phrase: phrase }
+        end
+      else
+        error!({ error: 'Category not found' }, 404)
+      end
+    end
+
+    get '/phrases/:category/sample' do
+      category = params[:category]
       phrases = Phrases.categories[category]
       id = rand(1..phrases.size)
       if Phrases.categories.key?(category)

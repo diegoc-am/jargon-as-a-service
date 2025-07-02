@@ -36,5 +36,6 @@ map '/' do
 end
 
 map '/api' do
+    Jargon::Phrases.load_categories! # Ensure categories are loaded before API is run
     run Jargon::API
 end

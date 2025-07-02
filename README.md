@@ -34,9 +34,9 @@ services:
 
 ### Examples
 
-- [executive_coercion](https://jaas.diegoc.io/api/phrases/executive_coercion)
-- [yes](https://jaas.diegoc.io/api/phrases/yes)
-- [no](https://jaas.diegoc.io/api/phrases/no)
+- [executive_coercion](https://jaas.diegoc.io/api/phrases/executive_coercion/sample)
+- [yes](https://jaas.diegoc.io/api/phrases/yes/sample)
+- [no](https://jaas.diegoc.io/api/phrases/no/sample)
 
 ## Contributing
 
