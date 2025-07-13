@@ -1,5 +1,5 @@
 # frozen_string_literal: true
-
+require 'newrelic_rpm'
 require 'logger'
 require 'active_support'
 require 'rack'
