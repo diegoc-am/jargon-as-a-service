@@ -48,7 +48,7 @@ end
 namespace :db do
   MIGRATIONS_DIR = 'src/db/migrations'
 
-  desc "generates a migration file with a timestamp and name"
+  desc 'generates a migration file with a timestamp and name'
   task :generate_migration, :name do |_, args|
     args.with_defaults(name: 'migration')
 

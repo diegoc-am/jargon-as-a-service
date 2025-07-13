@@ -21,14 +21,14 @@ module Jargon
     get '/phrases/:category/sample' do
       category = params[:category]
       return Repository::Phrases.sample(category: category)
-      
+
       error!({ error: 'Category not found' }, 404)
     end
 
     get '/phrases/:category/:id' do
       phrase = Repository::Phrases.find(category: params[:category], id: params[:id].to_i)&.to_hash
       return phrase if phrase
-          
+
       error!({ error: 'Not found' }, 404)
     end
 
