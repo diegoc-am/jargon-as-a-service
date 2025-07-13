@@ -17,16 +17,13 @@ module Jargon
                 end
 
                 def load_phrases!
-                    @categories = {}
                     Dir.glob('src/assets/jargon/*.json').tap { |x| puts "Found #{x.join(',')}" }.each do |file_path|
                       category_name = File.basename(file_path, '.json')
                       puts "Loading phrases for category: #{category_name}"
-                      @categories[category_name] = read_phrases_file(file_path).each_with_index.map do |phrase, index|
-                          DB.connection[:phrases].insert(category: category_name, phrase: phrase)
-                          { id: index + 1, category: category_name, phrase: phrase }
+                      read_phrases_file(file_path).each do |phrase|
+                        DB.connection[:phrases].insert(category: category_name, phrase: phrase)
                       end
                     end
-                    @categories
                   end
             
                   def read_phrases_file(file_path)
