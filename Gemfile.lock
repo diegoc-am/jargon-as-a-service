@@ -42,6 +42,7 @@ GEM
       dry-logic (~> 1.4)
       zeitwerk (~> 2.6)
     ffi (1.17.2-x86_64-linux-gnu)
+    ffi (1.17.2-x86_64-linux-musl)
     grape (2.3.0)
       activesupport (>= 6)
       dry-types (>= 1.1)
@@ -138,6 +139,7 @@ GEM
       rack-session (>= 2.0.0, < 3)
       tilt (~> 2.0)
     sqlite3 (2.7.2-x86_64-linux-gnu)
+    sqlite3 (2.7.2-x86_64-linux-musl)
     tilt (2.6.0)
     tzinfo (2.0.6)
       concurrent-ruby (~> 1.0)
@@ -149,6 +151,7 @@ GEM
 
 PLATFORMS
   x86_64-linux
+  x86_64-linux-musl
 
 DEPENDENCIES
   activesupport (~> 8.0)
