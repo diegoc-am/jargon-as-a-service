@@ -21,7 +21,7 @@ module Jargon
         
       @host = ENV['HOST']
       @meta_image = "/img/#{category}.png"
-      @meta_title = dataset&[:phrase]
+      @meta_title = dataset[:phrase] if dataset.key?(:phrase) 
       erb :index
     end
 
