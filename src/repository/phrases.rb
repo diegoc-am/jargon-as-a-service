@@ -14,13 +14,7 @@ module Jargon
         end
 
         def self.sample(category: nil)
-            dataset = self
-
-            if category
-                dataset = dataset.where(category: category)
-            end
-
-            dataset.order(Sequel.lit('RANDOM()')).limit(1).first&.to_hash
+          (category.nil? ? self : self.where(category: category)).order(Sequel.lit('RANDOM()')).limit(1).first&.to_hash
         end
     end
   end
