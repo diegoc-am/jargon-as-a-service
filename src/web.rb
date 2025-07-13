@@ -10,8 +10,8 @@ module Jargon
         category = params[:category] || Phrases.categories.keys.sample
         phrases = Phrases.categories[category]
         id = params[:id] ? params[:id].to_i : rand(1..phrases.size)
-
-        @phrase = Phrases.categories[category][id - 1]
+        @meta_image = "/img/#{category}.png"
+        @meta_title = Phrases.categories[category][id - 1]
         erb :index
     end
 

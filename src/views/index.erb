@@ -3,11 +3,12 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta property="og:title" content="<%= @phrase %>">
+  <meta property="og:title" content="<%= @meta_title %>">
   <meta name="description" content="I promised myself I'd stick to being unhelpful this week.">
   <meta property="og:description" content="Communicate like a pro with Jargon as a Service">
   <meta property="og:url" content="https://jaas.diegoc.io">
-  <meta property="og:image" content="https://github.com/diegoc-am/jargon-as-a-service/blob/main/docs/michael_scott.jpg?raw=true">
+  <meta property="og:image" content="<%= @meta_image %>">
+  <meta property="og:type" content="website">
   <title>jargon-as-a-service</title>
   <style>
     body {
