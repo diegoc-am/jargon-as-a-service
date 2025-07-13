@@ -1,41 +1,27 @@
 # frozen_string_literal: true
 
 require 'json'
+require_relative 'db'
 
 module Jargon
   module Repository
-    class Phrases
-      class << self
-        def categories
-          return @categories if defined?(@categories)
-  
-          load_categories!
+    
+    class Phrases < Sequel::Model(DB.connection[:phrases])
+        
+
+        def self.categories
+            self.distinct.select(:category).map(:category)
         end
-  
-        def load_categories!
-          @categories = {}
-          Dir.glob('src/assets/jargon/*.json').tap { |x| puts "Found #{x.join(',')}" }.each do |file_path|
-            category_name = File.basename(file_path, '.json')
-            puts "Loading phrases for category: #{category_name}"
-            @categories[category_name] = load_phrases(file_path).each_with_index.map do |phrase, index|
-                { id: index + 1, category: category_name, phrase: phrase }
+
+        def self.sample(category: nil)
+            dataset = self
+
+            if category
+                dataset = dataset.where(category: category)
             end
-          end
-          @categories
+
+            dataset.order(Sequel.lit('RANDOM()')).limit(1).first&.to_hash
         end
-  
-        def load_phrases(file_path)
-          return [] unless File.exist?(file_path)
-  
-          begin
-            file_content = File.read(file_path)
-            JSON.parse(file_content, symbolize_names: true)
-          rescue JSON::ParserError => e
-            puts "Error parsing JSON from #{file_path}: #{e.message}"
-            []
-          end
-        end
-      end
     end
   end
 end

@@ -31,3 +31,7 @@ gem 'activesupport', '~> 8.0'
 gem 'rack-contrib', '~> 2.5'
 
 gem 'sinatra', '~> 4.1'
+
+gem "sequel", "~> 5.94"
+
+gem "sqlite3", "~> 2.7"

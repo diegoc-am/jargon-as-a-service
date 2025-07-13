@@ -7,23 +7,21 @@ module Jargon
     set :views, File.join(root, 'views')
 
     get '/' do
-      category = if params[:category] && Repository::Phrases.categories.key?(params[:category])
+      category = if params[:category] && Repository::Phrases.categories.include?(params[:category])
         params[:category]
       else 
-        Repository::Phrases.categories.keys.sample
+        Repository::Phrases.categories.sample
       end
 
-      phrases = Repository::Phrases.categories[category]
-      
-      id = if params[:id].to_i if params[:id].to_i > 0 && params[:id].to_i <= phrases.size
-        params[:id].to_i
+      dataset = if params[:id]&.to_i
+        Repository::Phrases.find(category: category, id: params[:id]&.to_i)&.to_hash
       else
-        id = rand(1..phrases.size)
+        Repository::Phrases.sample
       end
         
       @host = ENV['HOST']
       @meta_image = "/img/#{category}.png"
-      @meta_title = Repository::Phrases.categories[category][id - 1][:phrase]
+      @meta_title = dataset&[:phrase]
       erb :index
     end
 

@@ -19,6 +19,6 @@ Rack::Attack.cache.store = ActiveSupport::Cache::MemoryStore.new
 Rack::Attack.throttled_response_retry_after_header = true
 Rack::Attack.throttle('req/ip', limit: 60, period: 60, &:ip)
 
-Jargon::Repository::Phrases.load_categories! # Ensure categories are loaded before API is run
+Jargon::Repository::DB.load_phrases! # Ensure categories are loaded before API is run
 
 run Rack::Cascade.new [Jargon::Web, Jargon::API]

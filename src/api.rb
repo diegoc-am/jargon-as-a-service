@@ -15,47 +15,31 @@ module Jargon
     end
 
     get '/phrases/:category' do
-      category = params[:category]
-      Repository::Phrases.categories[category] if Repository::Phrases.categories.key?(category)
-      
-      error!({ error: 'Category not found' }, 404)
+      return Repository::Phrases.where(category: params[:category]).select(:id, :phrase).map(&:to_hash)
     end
 
     get '/phrases/:category/sample' do
       category = params[:category]
-      phrases = Repository::Phrases.categories[category]
-      id = rand(1..phrases.size)
-      
-      return Repository::Phrases.categories[category][id - 1] if Repository::Phrases.categories.key?(category)
+      return Repository::Phrases.sample(category: category)
       
       error!({ error: 'Category not found' }, 404)
     end
 
     get '/phrases/:category/:id' do
-      id = if params[:id].to_i if params[:id].to_i > 0 && params[:id].to_i <= phrases.size
-        params[:id].to_i
-      else
-        id = rand(1..phrases.size)
-      end
-
-      category = params[:category]
-
-      return Repository::Phrases.categories[category][id - 1] if Repository::Phrases.categories.key?(category)
+      phrase = Repository::Phrases.find(category: params[:category], id: params[:id].to_i)&.to_hash
+      return phrase if phrase
           
-      error!({ error: 'Category not found' }, 404)
+      error!({ error: 'Not found' }, 404)
     end
 
     get '/categories' do
       {
-        categories: Repository::Phrases.categories.keys
+        categories: Repository::Phrases.categories
       }
     end
 
     get '/jargon' do
-      category = Repository::Phrases.categories.keys.sample
-      phrases = Repository::Phrases.categories[category]
-      id = rand(1..phrases.size)
-      Repository::Phrases.categories[category][id - 1]
+      Repository::Phrases.sample
     end
   end
 end
