@@ -23,7 +23,7 @@ module Jargon
         
       @host = ENV['HOST']
       @meta_image = "/img/#{category}.png"
-      @meta_title = Repository::Phrases.categories[category][id - 1]
+      @meta_title = Repository::Phrases.categories[category][id - 1][:phrase]
       erb :index
     end
 
