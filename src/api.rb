@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 require 'grape'
-require_relative 'phrases'
+require_relative 'repository/phrases'
 
 module Jargon
   ##
@@ -16,60 +16,46 @@ module Jargon
 
     get '/phrases/:category' do
       category = params[:category]
-      if Phrases.categories.key?(category)
-        Phrases.categories[category].each_with_index.map do |phrase, index|
-          { id: index + 1, phrase: phrase }
-        end
-      else
-        error!({ error: 'Category not found' }, 404)
-      end
+      Repository::Phrases.categories[category] if Repository::Phrases.categories.key?(category)
+      
+      error!({ error: 'Category not found' }, 404)
     end
 
     get '/phrases/:category/sample' do
       category = params[:category]
-      phrases = Phrases.categories[category]
+      phrases = Repository::Phrases.categories[category]
       id = rand(1..phrases.size)
-      if Phrases.categories.key?(category)
-        {
-          id: id,
-          category: category,
-          phrase: Phrases.categories[category][id - 1]
-        }
-      else
-        error!({ error: 'Category not found' }, 404)
-      end
+      
+      return Repository::Phrases.categories[category][id - 1] if Repository::Phrases.categories.key?(category)
+      
+      error!({ error: 'Category not found' }, 404)
     end
 
     get '/phrases/:category/:id' do
-      category = params[:category]
-      id = params[:id].to_i
-
-      if Phrases.categories.key?(category)
-        {
-          id: id,
-          category: category,
-          phrase: Phrases.categories[category][id - 1]
-        }
+      id = if params[:id].to_i if params[:id].to_i > 0 && params[:id].to_i <= phrases.size
+        params[:id].to_i
       else
-        error!({ error: 'Category not found' }, 404)
+        id = rand(1..phrases.size)
       end
+
+      category = params[:category]
+
+      return Repository::Phrases.categories[category][id - 1] if Repository::Phrases.categories.key?(category)
+          
+      error!({ error: 'Category not found' }, 404)
     end
 
     get '/categories' do
       {
-        categories: Phrases.categories.keys
+        categories: Repository::Phrases.categories.keys
       }
     end
 
     get '/jargon' do
-      category = Phrases.categories.keys.sample
-      phrases = Phrases.categories[category]
+      category = Repository::Phrases.categories.keys.sample
+      phrases = Repository::Phrases.categories[category]
       id = rand(1..phrases.size)
-      {
-        id: id,
-        category: category,
-        phrase: Phrases.categories[category][id - 1]
-      }
+      Repository::Phrases.categories[category][id - 1]
     end
   end
 end

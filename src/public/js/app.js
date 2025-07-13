@@ -60,7 +60,9 @@ const urls = {
         copyButton.hidden = false;
         categoryDiv.textContent = friendlyCategoryNames[data.category] || 'No category provided.';
         outputDiv.textContent = data.phrase || 'No jargon received.';
-        window.history.pushState({}, '', `?category=${data.category}&id=${data.id}`);
+        if (data.category !== undefined && data.id !== undefined) {
+          window.history.pushState({}, '', `?category=${data.category}&id=${data.id}`);
+        }
       } catch (error) {
         outputDiv.textContent = 'Error fetching jargon: ' + error.message;
       }

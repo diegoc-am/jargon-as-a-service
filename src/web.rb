@@ -7,23 +7,34 @@ module Jargon
     set :views, File.join(root, 'views')
 
     get '/' do
-        category = params[:category] || Phrases.categories.keys.sample
-        phrases = Phrases.categories[category]
-        id = params[:id] ? params[:id].to_i : rand(1..phrases.size)
-        @host = ENV['HOST']
-        @meta_image = "/img/#{category}.png"
-        @meta_title = Phrases.categories[category][id - 1]
-        erb :index
+      category = if params[:category] && Repository::Phrases.categories.key?(params[:category])
+        params[:category]
+      else 
+        Repository::Phrases.categories.keys.sample
+      end
+
+      phrases = Repository::Phrases.categories[category]
+      
+      id = if params[:id].to_i if params[:id].to_i > 0 && params[:id].to_i <= phrases.size
+        params[:id].to_i
+      else
+        id = rand(1..phrases.size)
+      end
+        
+      @host = ENV['HOST']
+      @meta_image = "/img/#{category}.png"
+      @meta_title = Repository::Phrases.categories[category][id - 1]
+      erb :index
     end
 
     not_found do
-        status 404
-        'not found'
+      status 404
+      'not found'
     end
 
     error do
-        status 500
-        'internal server error'
+      status 500
+      'internal server error'
     end
   end
 end
