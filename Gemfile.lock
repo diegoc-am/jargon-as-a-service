@@ -64,6 +64,7 @@ GEM
       builder
       minitest (>= 5.0)
       ruby-progressbar
+    murmurhash3 (0.1.7)
     mustermann (3.0.3)
       ruby2_keywords (~> 0.0.1)
     mustermann-grape (1.1.0)
@@ -160,6 +161,7 @@ DEPENDENCIES
   json (~> 2.12)
   minitest (~> 5.25)
   minitest-reporters (~> 1.7)
+  murmurhash3 (~> 0.1.7)
   newrelic_rpm (~> 9.19)
   puma (~> 6.6)
   rack-attack (~> 6.7)

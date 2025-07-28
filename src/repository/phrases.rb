@@ -6,6 +6,11 @@ require_relative 'db'
 module Jargon
   module Repository
     class Phrases < Sequel::Model(DB.connection[:phrases])
+      def before_create
+        self.id = Base64.strict_encode64("#{self.category}:#{self.phrase}") if id.nil?
+        super
+      end
+
       def self.categories
         distinct.select(:category).map(:category)
       end

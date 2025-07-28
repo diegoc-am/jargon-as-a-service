@@ -2,10 +2,12 @@
 
 require 'sqlite3'
 require 'sequel'
+require 'murmurhash3'
 
 module Jargon
   module Repository
     class DB
+      SEED = 42 # Must be static for consistent hashing
       class << self
         def connection
           return @connection if defined?(@connection)
@@ -21,7 +23,9 @@ module Jargon
             category_name = File.basename(file_path, '.json')
             puts "Loading phrases for category: #{category_name}"
             read_phrases_file(file_path).each do |phrase|
-              DB.connection[:phrases].insert(category: category_name, phrase: phrase)
+              DB.connection[:phrases].insert(id: MurmurHash3::V128.str_hexdigest("#{category_name}:#{phrase}", SEED), category: category_name, phrase: phrase)
+            rescue Sequel::UniqueConstraintViolation => e
+              puts "Skipping duplicate phrase: #{phrase} in category: #{category_name}"
             end
           end
         end

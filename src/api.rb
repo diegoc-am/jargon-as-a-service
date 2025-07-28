@@ -14,8 +14,15 @@ module Jargon
       { status: :ok }
     end
 
-    get '/phrases/:category' do
-      return Repository::Phrases.where(category: params[:category]).select(:id, :phrase).map(&:to_hash)
+    get '/phrases/:id_or_category' do
+      phrase = Repository::Phrases.find(id: params[:id_or_category])&.to_hash
+      return phrase if phrase
+
+      category = Repository::Phrases.categories.include?(params[:id_or_category]) ? params[:id_or_category] : nil
+
+      return Repository::Phrases.where(category: category).map(&:to_hash) if category
+      
+      error!({ error: 'Not found' }, 404)
     end
 
     get '/phrases/:category/sample' do
@@ -26,7 +33,7 @@ module Jargon
     end
 
     get '/phrases/:category/:id' do
-      phrase = Repository::Phrases.find(category: params[:category], id: params[:id].to_i)&.to_hash
+      phrase = Repository::Phrases.find(category: params[:category], id: params[:id])&.to_hash
       return phrase if phrase
 
       error!({ error: 'Not found' }, 404)

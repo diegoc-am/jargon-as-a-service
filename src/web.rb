@@ -9,21 +9,15 @@ module Jargon
     set :views, File.join(root, 'views')
 
     get '/' do
-      category = if params[:category] && Repository::Phrases.categories.include?(params[:category])
-                   params[:category]
-                 else
-                   Repository::Phrases.categories.sample
-                 end
-
-      dataset = if params[:id]&.to_i
-                  Repository::Phrases.find(category: category, id: params[:id]&.to_i)&.to_hash
+      dataset = if params[:id]
+                  Repository::Phrases.find(id: params[:id])&.to_hash
                 else
                   Repository::Phrases.sample
                 end
 
       @host = ENV['HOST']
-      @meta_image = "/img/#{category}.png"
-      @meta_title = dataset[:phrase] if dataset.key?(:phrase)
+      @meta_image = "/img/#{dataset[:category]}.png"
+      @meta_title = dataset[:phrase]
       erb :index
     end
 

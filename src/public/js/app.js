@@ -30,13 +30,12 @@ const urls = {
 
   // Check if there is a category in the URL
   const urlParams = new URLSearchParams(window.location.search);
-  const category = urlParams.get('category');
   const id = urlParams.get('id');
 
-  if (category && id) {
-    const url = `/api/phrases/${category}/${id}`;
+  if (id) {
+    const url = `/api/phrases/${id}`;
     fetchPhrase(url).then(data => {
-      document.getElementById('category').textContent = friendlyCategoryNames[category] || 'No category provided.';
+      document.getElementById('category').textContent = friendlyCategoryNames[data.category] || 'No category provided.';
       document.getElementById('output').textContent = data.phrase || 'No jargon received.';
       document.getElementById('output').hidden = false;
       document.getElementById('copyButton').hidden = false;
@@ -61,7 +60,7 @@ const urls = {
         categoryDiv.textContent = friendlyCategoryNames[data.category] || 'No category provided.';
         outputDiv.textContent = data.phrase || 'No jargon received.';
         if (data.category !== undefined && data.id !== undefined) {
-          window.history.pushState({}, '', `?category=${data.category}&id=${data.id}`);
+          window.history.pushState({}, '', `?id=${data.id}`);
         }
       } catch (error) {
         outputDiv.textContent = 'Error fetching jargon: ' + error.message;
@@ -72,5 +71,5 @@ const urls = {
   document.getElementById('copyButton').addEventListener('click', () => {
     const prms = new URLSearchParams(window.location.search);
     const outputDiv = document.getElementById('output');
-    navigator.clipboard.writeText(`> "${outputDiv.textContent}"\nfrom https://jaas.diegoc.io?category=${prms.get('category')}&id=${prms.get('id')}`);
+    navigator.clipboard.writeText(`> "${outputDiv.textContent}"\nfrom https://jaas.diegoc.io?id=${prms.get('id')}`);
   });
