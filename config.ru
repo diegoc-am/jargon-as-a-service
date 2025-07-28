@@ -1,4 +1,5 @@
 # frozen_string_literal: true
+
 require 'newrelic_rpm'
 require 'logger'
 require 'active_support'
@@ -7,7 +8,7 @@ require 'rack/attack'
 require 'rack/contrib'
 
 require_relative 'src/web'
-require_relative 'src/api'
+require_relative 'src/api/root'
 
 use Rack::Attack
 use Rack::CommonLogger, Logger.new($stdout)
@@ -21,4 +22,4 @@ Rack::Attack.throttle('req/ip', limit: 60, period: 60, &:ip)
 
 Jargon::Repository::DB.load_phrases! # Ensure categories are loaded before API is run
 
-run Rack::Cascade.new [Jargon::Web, Jargon::API]
+run Rack::Cascade.new [Jargon::Web, Jargon::API::Root]

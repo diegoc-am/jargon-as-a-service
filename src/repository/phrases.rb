@@ -7,7 +7,7 @@ module Jargon
   module Repository
     class Phrases < Sequel::Model(DB.connection[:phrases])
       def before_create
-        self.id = Base64.strict_encode64("#{self.category}:#{self.phrase}") if id.nil?
+        self.id = Base64.strict_encode64("#{category}:#{phrase}") if id.nil?
         super
       end
 

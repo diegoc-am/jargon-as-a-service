@@ -1,8 +1,12 @@
-indent_size = 2
-indent_style = space
+root = true
+
+[*]
 end_of_line = lf
-charset = utf-8
 trim_trailing_whitespace = true
 insert_final_newline = true
+
+[*.rb]
+indent_size = 2
+indent_style = space
+charset = utf-8
 max_line_length = 80
-root = true

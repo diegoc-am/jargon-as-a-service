@@ -36,6 +36,8 @@ gem 'sequel', '~> 5.94'
 
 gem 'sqlite3', '~> 2.7'
 
-gem "newrelic_rpm", "~> 9.19"
+gem 'newrelic_rpm', '~> 9.19'
 
-gem "murmurhash3", "~> 0.1.7"
+gem 'murmurhash3', '~> 0.1.7'
+
+gem 'grape-swagger', '~> 2.1'
