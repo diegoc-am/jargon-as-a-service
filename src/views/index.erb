@@ -2,7 +2,6 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta property="og:title" content="<%= @meta_title %>">
   <meta name="description" content="I promised myself I'd stick to being unhelpful this week.">
   <meta property="og:description" content="Communicate like a pro with Jargon as a Service">
@@ -10,27 +9,46 @@
   <meta property="og:image" content="<%= @host %><%= @meta_image %>">
   <meta property="og:type" content="website">
   <title>jargon-as-a-service</title>
-  <link rel="stylesheet" href="/css/style.css">
+  <!--Import Google Icon Font-->
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+  <!-- Compiled and minified CSS -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+  <link rel="stylesheet" href="css/style.css">
+
+  <!--Let browser know website is optimized for mobile-->
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
 </head>
 <body>
-  <h2 id="category">Just click a button</h2>
-  <div id="outputContainer">
-    <h1 id="output" hidden="true">Click the button to fetch jargon.</h1>
-  </div>
-  <div id="buttonContainer">
-    <button id="fetchSassyMorning" class="fetch" style="background-color: #90e29b;">Say good morning</button>
-    <button id="fetchNo" class="fetch" style="background-color: #af0d30;">Say no</button>
-    <button id="fetchYes" class="fetch" style="background-color: #00aa69;">Say yes</button>
-    <button id="fetchExecutiveCoercion" class="fetch" style="background-color: #b4d455;">Sound like a high level executive</button>
-    <button id="fetchAnnoyingManager" class="fetch" style="background-color: #405012;">Sound like a (micro) manager</button>
-    <button id="copyButton"><h3>📋</h3></button>
-  </div>
+  <main>
+    <div class="container">
+      <div>
+        <h5 id="category">Just click a button</h5>
+        <div id="outputContainer" class="center-align">
+          <p class="flow-text" id="output" hidden="true">Click the button to fetch jargon.</p>
+        </div>
+        <div id="buttonContainer">
+          <div class="row">
+            <div class="col s3"><a id="fetchSassyMorning" class="waves-effect waves-light btn btn-large fetch">Say good morning</a></div>
+            <div class="col s3"><a id="fetchNo" class="waves-effect waves-light btn btn-large fetch">Say no</a></div>
+            <div class="col s3"><a id="fetchYes" class="waves-effect waves-light btn btn-large fetch">Say yes</a></div>
+            <div class="col s3"><a id="fetchExecutiveCoercion" class="waves-effect waves-light btn btn-large fetch">Sound like a high level executive</a></div>
+            <div class="col s3"><a id="fetchAnnoyingManager" class="waves-effect waves-light btn btn-large fetch">Sound like a (micro) manager</a></div>
+            <div class="col offset-s9 s3"><a id="copyButton" class="waves-effect waves-light btn btn-large"><i class="large material-icons">content_copy</i></a></div>
+        </div>
+      </div>
+    </div>
+  </main>
 
-  <!-- Floating GitHub logo -->
-  <div id="githubLogo" onclick="window.open('https://github.com/diegoc-am/jargon-as-a-service', '_blank')">
-    <img src="https://github.githubassets.com/images/modules/logos_page/GitHub-Mark.png" alt="GitHub Logo">
-  </div>
-
+  <footer class="page-footer">
+    <div class="container">
+      <div class="row">
+        <div class="col l4 offset-l2 s12">
+          <h5><a class="white-text" href="https://github.com/diegoc-am/jargon-as-a-service" target="_blank">Github</a></h5>
+        </div>
+      </div>
+    </div>
+  </footer>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
   <script src="/js/app.js"></script>
 </body>
 </html>
